@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import authSaga from './auth/saga';
-
+import fileSaga from './files/saga';
 export default function* rootSaga(getState) {
-  yield all([authSaga()]);
+  yield all([authSaga(),fileSaga()]);
 }
