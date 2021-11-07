@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
 import FileActions from '../../Redux/files/actions';
+import VideoActions from '../../Redux/videos/actions';
 import {Button, Breadcrumb} from 'antd';
 import { LeftCircleOutlined} from '@ant-design/icons';
-const {fileFetch} = FileActions
+const {fileFetch} = FileActions;
+const {videoFetch} = VideoActions;
 export default function Dashboard(){
     const dispatch = useDispatch()
     let myFiles = useSelector(state=>state.Files.files)
@@ -22,7 +24,8 @@ export default function Dashboard(){
 
     const changePath = (addOn) =>{
         if(addOn.split('.').pop()==='mp4'){
-            console.log('video file')
+            console.log('sending video')
+            dispatch(videoFetch(path.join('/'),addOn))
         }else{
             setPath(path=>[...path,addOn]);
         }
